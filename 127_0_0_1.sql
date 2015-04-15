@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2015 at 03:21 AM
+-- Generation Time: Apr 16, 2015 at 12:55 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -25,6 +25,23 @@ USE `library`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `books`
+--
+
+CREATE TABLE IF NOT EXISTS `books` (
+  `bookid` varchar(10) NOT NULL,
+  `booktitle` varchar(50) NOT NULL,
+  `author` varchar(30) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `availableno` int(11) NOT NULL,
+  PRIMARY KEY (`bookid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -35,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `address` varchar(50) NOT NULL,
   `phone` varchar(12) NOT NULL,
   `email` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -42,11 +60,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fname`, `lname`, `address`, `phone`, `email`) VALUES
-('hjk34564', 'hukhu', 'zsgtrd', 'rtytnbtdtbhr', '376452', 'ftniudrb'),
-('M1326', 'jithin', 'jose', 'sarnia', '5193124570', 'jithinjose1600@gmail.com'),
-('M1831', 'yrr6u', 'rtut6rfu', '6rtu8r68', '768768', 'fgjgyn'),
-('we124', 'sdrf', 'setgd', 'erytutut', '234234', 'str4efr');
+INSERT INTO `users` (`id`, `fname`, `lname`, `address`, `phone`, `email`, `password`) VALUES
+('M1054', 'Biby', 'zsgtrd', 'Sarnia', '376452123', 'bibymichael@gmail.com', 'biby'),
+('M1326', 'jithin', 'jose', 'sarnia', '5193124570', 'jithinjose1600@gmail.com', 'jithin'),
+('M1831', 'yrr6u', 'rtut6rfu', '6rtu8r68', '768768', 'fgjgyn', '123'),
+('we124', 'sdrf', 'setgd', 'erytutut', '234234', 'str4efr', 'qwerty');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

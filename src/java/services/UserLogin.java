@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author c0648991
  */
-@WebServlet("login")
+@WebServlet("/login")
 public class UserLogin extends HttpServlet{
     
     @Override
@@ -43,7 +43,7 @@ public class UserLogin extends HttpServlet{
          ArrayList<String> ar=new ArrayList();
             while(rs.next())
             {
-                String id=rs.getString("m_id");
+                /*String id=rs.getString("m_id");
                 ar.add(id);
                 String name= rs.getString("m_name");
                 ar.add(name);
@@ -56,11 +56,11 @@ public class UserLogin extends HttpServlet{
                 HttpSession ses=req.getSession();
                 ses.setAttribute("mem_name", name);
                ses.setAttribute("mem_id", id);
-                req.setAttribute("lst", ar);
-                RequestDispatcher disp=req.getRequestDispatcher("home.jsp");
+                req.setAttribute("lst", ar);*/
+                RequestDispatcher disp=req.getRequestDispatcher("viewMembers.html");
                 disp.forward(req, res);
             }
-            res.sendRedirect("loginerror.html");
+            res.sendRedirect("index.html");
        } catch (SQLException ex) {
             Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
         }

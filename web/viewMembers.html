@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <script>
+           // var  id="we124";
+            $(document).ready(function() {
+               
+                $.ajax({url: "http://localhost:8080/Library/u/users/",
+                    dataType: "json",
+                    method:"get",
+                    error: function(xhr, status, error) {
+                        alert("Error: " + xhr.status + " - " + error);
+                    },
+                    success: function(data) {
+                        
+                        var items = [];
+                        $.each(data, function() {
+                            $.each(this, function(key, value) {
+                                items.push("<li id='" + key + "'>" + value + "</li>");
+                            });
+                        });
+                        $("#users").html(items);
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="users">id</div>
+    </body>
+</html>

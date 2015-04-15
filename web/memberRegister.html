@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script>
+
+            $(document).ready(function() {
+                $('#register').click(function() {
+                    $.ajax({
+                        url: "./u/users",
+                        dataType: "json",
+                        contentType: 'application/json; charset=UTF-8',
+                        data: JSON.stringify({"firstName": $("#fname").val(),
+                            "lastName": $("#lname").val(),
+                            "address": $("#address").val(),
+                            "phone": $("#phone").val(),
+                            "email": $("#email").val()}),
+                        method: "post",
+                        success: function(result) {
+                        if(result === 1) 
+                            location.href = "index.html";
+                    }
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <section class="container">
+            <div class="col-md-8">
+                <form>
+                <div class="form-group">
+                    <label for="fname">First Name:</label>
+                    <input id="fname" class="form-control"/>
+                    <label for="lname">Last Name:</label>
+                    <input id="lname" class="form-control"/>
+                    <label for="address">Address:</label>
+                    <input id="address" class="form-control"/>
+                    <label for="phone">Phone No:</label>
+                    <input id="phone" class="form-control"/>
+                    <label for="email">Email:</label>
+                    <input id="email" class="form-control"/>
+
+                </div>
+
+                <button id="register" class="btn btn-default">Register</button>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

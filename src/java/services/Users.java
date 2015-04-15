@@ -19,8 +19,10 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -48,7 +50,6 @@ public class Users {
     
     @POST
     public void post(String str) {
-        System.out.println("Entered jaxrs");
         try {
             JsonObject json = Json.createReader(new StringReader(str)).readObject();
             int min = 1;
@@ -57,14 +58,11 @@ public class Users {
             int i1 = r.nextInt(max - min + 1) + min;
             int fl = 1000 + i1;
             String id = "M" + fl;
-            System.out.println("ID:"+id);
             String fname = json.getString("firstName");
             String lname = json.getString("lastName");
             String address = json.getString("address");
             String phone = json.getString("phone");
-            String email = json.getString("email");
-            System.out.println("Name"+fname);
-            
+            String email = json.getString("email");            
             Connection conn = DBClass.getConnection();
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users (id, fname, lname, address, phone, email) VALUES (?, ?, ?, ?, ?, ?)");
             pstmt.setString(1, id);
@@ -77,7 +75,48 @@ public class Users {
         } catch (SQLException ex) {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //return get();
+        
+    }
+    
+    @PUT
+    @Path("{id}")
+    public void put(@PathParam("id") String id, String str) {
+        try {
+            JsonObject json = Json.createReader(new StringReader(str)).readObject();
+            String fname = json.getString("firstName");
+            String lname = json.getString("lastName");
+            String address = json.getString("address");
+            String phone = json.getString("phone");
+            String email = json.getString("email");
+            
+            Connection conn = DBClass.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE users SET fname=?, lname=?, address=?, phone=?, email=? WHERE id=?");
+            
+            pstmt.setString(1, fname);
+            pstmt.setString(2, lname);
+            pstmt.setString(3, address);
+            pstmt.setString(4, phone);
+            pstmt.setString(5, email);
+            pstmt.setString(6, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    @DELETE
+    @Path("{id}")
+    public void delete(@PathParam("id") String id) {
+        try {
+            Connection conn = DBClass.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM users WHERE id=?");
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     private JsonArray getResults(String query, String... params) {

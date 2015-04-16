@@ -23,12 +23,10 @@
                     <input id="fname" name="email" class="form-control"/>
                     <label for="lname">Password:</label>
                     <input id="lname" name="password" class="form-control"/>
-                     </div>
-
+                </div>
                 <button id="Login" class="btn btn-default">Register</button>
                 </form>
             </div>
         </section>
-        <input 
     </body>
 </html>

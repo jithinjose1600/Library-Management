@@ -50,7 +50,6 @@ public class Books extends HttpServlet {
             String cat = req.getParameter("b_category");
             String des = req.getParameter("b_description");
             int quantity = Integer.parseInt(req.getParameter("b_quantity"));
-            System.out.println(id +" "+title+" "+author+" "+cat+" "+des+" "+quantity);
             String query="INSERT INTO books(bookid, booktitle, author, category, description, quantity, availableno) VALUES(?, ?, ?, ?, ?, ?, ?)";
         try(Connection con=DBClass.getConnection()) {
             PreparedStatement pstmt = con.prepareStatement(query); 

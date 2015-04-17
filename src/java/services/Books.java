@@ -7,6 +7,7 @@
 package services;
 
 import Model.DBClass;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,10 +16,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,12 +31,33 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/books")
 public class Books extends HttpServlet {
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse res) {
-        ArrayList<String> b=new ArrayList();
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        ArrayList<String> books=new ArrayList();
         String query="SELECT * FROM books";
         try(Connection con=DBClass.getConnection()) {
             PreparedStatement pstmt = con.prepareStatement(query); 
          ResultSet rs = pstmt.executeQuery();
+         while(rs.next()) {
+             books.add(rs.getString("bookid"));
+             books.add(rs.getString("booktitle"));
+             books.add(rs.getString("author"));
+             books.add(rs.getString("category"));
+             books.add(rs.getString("description"));
+             books.add(String.valueOf(rs.getInt("quantity")));
+             books.add(String.valueOf(rs.getInt("availableno")));
+         }
+         req.setAttribute("book", books);
+             HttpSession ses=req.getSession(true);
+               if(ses.getAttribute("mem_name")!=null)
+               {
+                   RequestDispatcher disp=req.getRequestDispatcher("viewBooks.jsp");
+              disp.forward(req, res);
+               }
+               else
+               {
+                 RequestDispatcher d=req.getRequestDispatcher("Admin/viewBooks.jsp");
+             d.forward(req, res);
+               }
         } catch (SQLException ex) {
             Logger.getLogger(Books.class.getName()).log(Level.SEVERE, null, ex);
         }

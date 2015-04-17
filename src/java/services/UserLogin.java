@@ -34,7 +34,7 @@ public class UserLogin extends HttpServlet{
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
        String email= req.getParameter("email");
        String password=req.getParameter("password"); 
-       String query="SELECT * FROM users WHERE email=? AND password=?";
+       String query="SELECT id, fname, lname FROM users WHERE email=? AND password=?";
        try(Connection con=DBClass.getConnection()) {
          PreparedStatement pstmt = con.prepareStatement(query); 
          pstmt.setString(1, email);
@@ -57,7 +57,7 @@ public class UserLogin extends HttpServlet{
                 ses.setAttribute("mem_name", name);
                ses.setAttribute("mem_id", id);
                 req.setAttribute("lst", ar);*/
-                RequestDispatcher disp=req.getRequestDispatcher("viewMembers.html");
+                RequestDispatcher disp=req.getRequestDispatcher("books");
                 disp.forward(req, res);
             }
             res.sendRedirect("index.html");

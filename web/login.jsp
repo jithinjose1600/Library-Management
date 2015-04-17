@@ -25,6 +25,7 @@
                     <input id="lname" name="password" class="form-control"/>
                 </div>
                 <button id="Login" class="btn btn-default">Register</button>
+                <a href="memberRegister.html">New User, Register</a>
                 </form>
             </div>
         </section>

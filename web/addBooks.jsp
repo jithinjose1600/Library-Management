@@ -17,7 +17,7 @@
         <h1>Add Books</h1>
         <section class="container">
             <div class="col-md-8">
-                <form action="books">
+                <form action="books" method="POST">
                 <div class="form-group">
                     <label for="b_name">Book Name:</label>
                     <input id="b_name" name="b_name" class="form-control"/>

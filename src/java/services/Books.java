@@ -49,7 +49,8 @@ public class Books extends HttpServlet {
             String author = req.getParameter("b_author");
             String cat = req.getParameter("b_category");
             String des = req.getParameter("b_description");
-            String quantity = req.getParameter("b_quantity");
+            int quantity = Integer.parseInt(req.getParameter("b_quantity"));
+            System.out.println(id +" "+title+" "+author+" "+cat+" "+des+" "+quantity);
             String query="INSERT INTO books(bookid, booktitle, author, category, description, quantity, availableno) VALUES(?, ?, ?, ?, ?, ?, ?)";
         try(Connection con=DBClass.getConnection()) {
             PreparedStatement pstmt = con.prepareStatement(query); 
@@ -58,9 +59,9 @@ public class Books extends HttpServlet {
             pstmt.setString(3, author);
             pstmt.setString(4, cat);
             pstmt.setString(5, des);
-            pstmt.setString(6, quantity);
-            pstmt.setString(7, quantity);
-            pstmt.executeQuery();
+            pstmt.setInt(6, quantity);
+            pstmt.setInt(7, quantity);
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Books.class.getName()).log(Level.SEVERE, null, ex);
         }

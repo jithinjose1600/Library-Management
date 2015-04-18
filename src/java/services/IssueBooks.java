@@ -26,8 +26,8 @@ public class IssueBooks extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
             String uid=req.getParameter("u_id");
-            String fname=req.getParameter("u_name");
-            String lname=req.getParameter("lname");
+            String fname=req.getParameter("f_name");
+            String lname=req.getParameter("l_name");
             String bid=req.getParameter("b_id");
             String bname=req.getParameter("b_name");
             String isdate=req.getParameter("is_date");

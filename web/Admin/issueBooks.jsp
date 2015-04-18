@@ -9,9 +9,32 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Issue Books</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Issue Books</h1>
+        <section class="container">
+            <div class="col-md-8">
+                <form action="../issue" method="POST">
+                <div class="form-group">
+                    <label for="u_id">User Id:</label>
+                    <input id="u_id" name="u_id" class="form-control"/>
+                    <label for="f_name">First Name:</label>
+                    <input id="f_name" name="f_name" class="form-control"/>
+                    <label for="l_name">Last Name:</label>
+                    <input id="l_name" name="l_name" class="form-control"/>
+                    <label for="b_id">Book Id:</label>
+                    <input id="b_id" name="b_id" class="form-control"/>
+                    <label for="b_name">Book Name:</label>
+                    <input id="b_name" name="b_name" class="form-control"/>
+                    <label for="is_date">Date of Issue:</label>
+                    <input id="is_date" name="is_date" class="form-control"/>
+                </div>
+                <button id="issue" class="btn btn-default">ISSUE BOOK</button>
+                </form>
+            </div>
+        </section>
     </body>
 </html>

@@ -29,16 +29,16 @@ public class returnBooks extends HttpServlet {
             String bid=request.getParameter("b_id");
             String ret=request.getParameter("re_date");
             String query="UPDATE records SET returndate=? WHERE userid=? AND bookid=?";
-            String qry="UPDATE books SET availableno=availableno + 1 WHERE bookid=?";
+            //String qry="UPDATE books SET availableno=availableno + 1 WHERE bookid=?";
             try(Connection con=DBClass.getConnection()) {
             PreparedStatement pstmt = con.prepareStatement(query); 
-            pstmt.setString(1, uid);
-            pstmt.setString(2, bid);
-            pstmt.setString(3, ret);
+            pstmt.setString(1, ret);
+            pstmt.setString(2, uid);
+            pstmt.setString(3, bid);
             pstmt.executeUpdate();
-            PreparedStatement pst = con.prepareStatement(qry);
-            pst.setString(1, bid);
-            pst.executeUpdate();
+//            PreparedStatement pst = con.prepareStatement(qry);
+//            pst.setString(1, bid);
+//            pst.executeUpdate();
     }   catch (SQLException ex) {
             Logger.getLogger(returnBooks.class.getName()).log(Level.SEVERE, null, ex);
         }

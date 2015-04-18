@@ -24,7 +24,8 @@ and open the template in the editor.
                             "lastName": $("#lname").val(),
                             "address": $("#address").val(),
                             "phone": $("#phone").val(),
-                            "email": $("#email").val()}),
+                            "email": $("#email").val(),
+                        "password": $("#password").val()}),
                         method: "post",
                         success: function(result) {
                         if(result) 
@@ -51,6 +52,8 @@ and open the template in the editor.
                     <input id="phone" class="form-control"/>
                     <label for="email">Email:</label>
                     <input id="email" class="form-control"/>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" class="form-control"/>
 
                 </div>
 

@@ -7,6 +7,7 @@
 package services;
 
 import Model.DBClass;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,24 +43,28 @@ public class UserLogin extends HttpServlet{
          ArrayList<String> ar=new ArrayList();
             while(rs.next())
             {
-                /*String id=rs.getString("m_id");
+                String id=rs.getString("id");
                 ar.add(id);
-                String name= rs.getString("m_name");
-                ar.add(name);
-                ar.add(rs.getString("m_address"));
+                String fname= rs.getString("fname");
+                ar.add(fname);
+                String lname= rs.getString("lname");
+                ar.add(lname);
+                /*ar.add(rs.getString("m_address"));
                 ar.add(rs.getString("m_phone"));
                 ar.add(rs.getString("m_email"));
                 ar.add(rs.getString("m_type"));
                 ar.add(rs.getString("m_uname"));
-                ar.add(rs.getString("m_password"));
-                HttpSession ses=req.getSession();
-                ses.setAttribute("mem_name", name);
-               ses.setAttribute("mem_id", id);
-                req.setAttribute("lst", ar);*/
-                RequestDispatcher disp=req.getRequestDispatcher("books");
-                disp.forward(req, res);
+                ar.add(rs.getString("m_password"));*/
+                HttpSession ses=req.getSession(true);
+                ses.setAttribute("name", fname+" "+lname);
+                ses.setAttribute("id", id);
+//                req.setAttribute("lst", ar);
+//                RequestDispatcher disp=req.getRequestDispatcher("books");
+//                disp.forward(req, res);
+                
+               res.sendRedirect("index.html");
             }
-            res.sendRedirect("index.html");
+           // res.sendRedirect("login.jsp");
        } catch (SQLException ex) {
             Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
         }

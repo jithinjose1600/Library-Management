@@ -29,7 +29,6 @@ public class UpdateBooks{
         JsonObject json = Json.createReader(new StringReader(str)).readObject();
         String id = json.getString("bookid");
         String title = json.getString("booktitle");
-        System.out.println("Book Name:"+ title);
         String author = json.getString("author");
         String cat = json.getString("category");
         String des = json.getString("description");

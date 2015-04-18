@@ -16,7 +16,6 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.ws.rs.DELETE;
@@ -36,7 +35,7 @@ public class Users {
     
     @GET
     @Produces("application/json")
-    public JsonArray doGet() {
+    public String doGet() {
         return getResults("SELECT * FROM users");
     
     }
@@ -44,7 +43,7 @@ public class Users {
     @GET
     @Path("{id}")
     @Produces({"application/json"})
-    public JsonArray doGet(@PathParam("id") String id) {
+    public String doGet(@PathParam("id") String id) {
         return getResults("SELECT * FROM users WHERE id=?", id);
     }
     
@@ -62,15 +61,17 @@ public class Users {
             String lname = json.getString("lastName");
             String address = json.getString("address");
             String phone = json.getString("phone");
-            String email = json.getString("email");            
+            String email = json.getString("email"); 
+            String password = json.getString("password"); 
             Connection conn = DBClass.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users (id, fname, lname, address, phone, email) VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users (id, fname, lname, address, phone, email, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
             pstmt.setString(1, id);
             pstmt.setString(2, fname);
             pstmt.setString(3, lname);
             pstmt.setString(4, address);
             pstmt.setString(5, phone);
             pstmt.setString(6, email);
+            pstmt.setString(7, password);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,16 +89,17 @@ public class Users {
             String address = json.getString("address");
             String phone = json.getString("phone");
             String email = json.getString("email");
-            
+            String password = json.getString("password");
             Connection conn = DBClass.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE users SET fname=?, lname=?, address=?, phone=?, email=? WHERE id=?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE users SET fname=?, lname=?, address=?, phone=?, email=?, password=? WHERE id=?");
             
             pstmt.setString(1, fname);
             pstmt.setString(2, lname);
             pstmt.setString(3, address);
             pstmt.setString(4, phone);
             pstmt.setString(5, email);
-            pstmt.setString(6, id);
+            pstmt.setString(6, password);
+            pstmt.setString(7, id);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
@@ -119,7 +121,7 @@ public class Users {
         
     }
     
-    private JsonArray getResults(String query, String... params) {
+    private String getResults(String query, String... params) {
         JsonArrayBuilder builder = Json.createArrayBuilder();
         try (Connection conn = DBClass.getConnection()) {            
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -135,6 +137,7 @@ public class Users {
                         .add("address", rs.getString("address"))
                       .add("phone", rs.getString("phone"))
                       .add("email", rs.getString("email"))
+                           .add("password", rs.getString("password"))
                           .build());
  
             }
@@ -142,6 +145,6 @@ public class Users {
         } catch (SQLException ex) {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return builder.build();
+        return builder.build().toString();
    }
 }

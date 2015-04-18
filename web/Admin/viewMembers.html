@@ -14,12 +14,9 @@ and open the template in the editor.
            // var  id="we124";
             $(document).ready(function() {
                
-                $.ajax({url: "http://localhost:8080/Library/u/users/",
+                $.ajax({url: "../u/users/",
                     dataType: "json",
                     method:"get",
-                    error: function(xhr, status, error) {
-                        alert("Error: " + xhr.status + " - " + error);
-                    },
                     success: function(data) {
                         
                         var items = [];

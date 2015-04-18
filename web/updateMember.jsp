@@ -14,13 +14,21 @@
     <script src="http://code.jquery.com/jquery.min.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-        <script>
+        <script type="text/javascript">
+         
+    <%  HttpSession ses=request.getSession();
+    String id=(String)ses.getAttribute("id");
+    //System.out.println("sessionid:"+id);
+   
+    
+%>
      
-  var uid= '<%=session.getAttribute("id")%>';
-  alert(uid);
+     
+     
   $(document).ready(function() {
-               //var uid = sessionStorage.getItem("id");
-               
+    var uid = document.getElementById("hid");
+    console.log("uid:"+uid);
+               alert(uid); 
                 $.ajax({url: "./u/users/"+uid,
                     dataType: "json",
                     method:"get",
@@ -37,7 +45,7 @@
                  }
                     }
                 });
-           
+           });
                 $('#update').click(function() {
                     $.ajax({
                         url: "./u/users"+uid,
@@ -55,12 +63,13 @@
 //                        if(result === 1) 
 //                            location.href = "index.html";
  //                   }
-                    });
+                    
                 });
             });
         </script>
     </head>
     <body>
+        <input type="text" id="hid" value="<%=id%>"/>
          <h1>Update Books</h1>
         <section class="container">
             <div class="col-md-8">

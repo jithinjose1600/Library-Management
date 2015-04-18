@@ -28,11 +28,12 @@
                             "category": $("#b_category").val(),
                             "description": $("#b_description").val(),
                             "quantity": $("#b_quantity").val()}),
-                        method: "put"
-//                        success: function(result) {
-//                        if(result === 1) 
-//                            location.href = "index.html";
- //                   }
+                        method: "put"                       
+                        success: window.location.href = "viewBooks.jsp";
+                                //function(result) {
+                        //if(result==1) 
+                            
+                    //}
                     });
                 });
             });

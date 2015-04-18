@@ -17,6 +17,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -25,7 +26,8 @@ import javax.ws.rs.Path;
 @Path("updatebooks")
 public class UpdateBooks{
     @PUT
-    public void doPut(String str) {
+    public Response doPut(String str) {
+        int res=0;
         JsonObject json = Json.createReader(new StringReader(str)).readObject();
         String id = json.getString("bookid");
         String title = json.getString("booktitle");
@@ -43,10 +45,11 @@ public class UpdateBooks{
             pstmt.setInt(5, quantity);
             pstmt.setInt(6, quantity);
             pstmt.setString(7, id);
-            pstmt.executeUpdate();
+            res=pstmt.executeUpdate();
     }   catch (SQLException ex) {
             Logger.getLogger(UpdateBooks.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return Response.ok(res).build();
     }
     
 }

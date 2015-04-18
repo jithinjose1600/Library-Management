@@ -44,30 +44,22 @@ public class UserLogin extends HttpServlet{
             while(rs.next())
             {
                 String id=rs.getString("id");
-                ar.add(id);
                 String fname= rs.getString("fname");
-                ar.add(fname);
                 String lname= rs.getString("lname");
-                ar.add(lname);
-                /*ar.add(rs.getString("m_address"));
-                ar.add(rs.getString("m_phone"));
-                ar.add(rs.getString("m_email"));
-                ar.add(rs.getString("m_type"));
-                ar.add(rs.getString("m_uname"));
-                ar.add(rs.getString("m_password"));*/
-                HttpSession ses=req.getSession(true);
-                ses.setAttribute("name", fname+" "+lname);
-                ses.setAttribute("id", id);
-//                req.setAttribute("lst", ar);
-//                RequestDispatcher disp=req.getRequestDispatcher("books");
-//                disp.forward(req, res);
-                
+                HttpSession session=req.getSession(true);
+                session.setAttribute("id", id);
+                session.setAttribute("name", fname+" "+lname);
                res.sendRedirect("index.html");
             }
-           // res.sendRedirect("login.jsp");
+            if(rs.wasNull())
+            {
+                res.sendRedirect("memberRegister.html");
+            }
+            
        } catch (SQLException ex) {
             Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     }
     
 }

@@ -48,7 +48,7 @@ public class Books extends HttpServlet {
          }
          req.setAttribute("book", books);
              HttpSession ses=req.getSession(true);
-               if(ses.getAttribute("mem_name")!=null)
+               if(ses.getAttribute("name")!=null)
                {
                    RequestDispatcher disp=req.getRequestDispatcher("viewBooks.jsp");
               disp.forward(req, res);
@@ -63,7 +63,7 @@ public class Books extends HttpServlet {
         }
     }
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse res) {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
             int min = 1;
             int max = 1000;
             Random r = new Random();
@@ -86,6 +86,7 @@ public class Books extends HttpServlet {
             pstmt.setInt(6, quantity);
             pstmt.setInt(7, quantity);
             pstmt.executeUpdate();
+            res.sendRedirect("./Admin/adminHome.html");
         } catch (SQLException ex) {
             Logger.getLogger(Books.class.getName()).log(Level.SEVERE, null, ex);
         }

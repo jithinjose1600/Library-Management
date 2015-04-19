@@ -20,13 +20,16 @@ and open the template in the editor.
                     dataType: "json",
                     method:"get",
                     success: function(data) {
-                        
                         var items = [];
+
                         $.each(data, function() {
+                            items.push("<tr>");
                             $.each(this, function(key, value) {
-                                items.push("<li id='" + key + "'>" + value + "</li>");
+                                items.push("<td id='" + key + "'><h3>" + value + "</h3></td>");
                             });
+                            items.push("</tr>");
                         });
+                
                         $("#users").html(items);
                     }
                 });
@@ -34,6 +37,7 @@ and open the template in the editor.
         </script>
     </head>
     <body>
+        <h1>List of Users</h1>
         <div id="users">id</div>
     </body>
 </html>

@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Register</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="http://code.jquery.com/jquery.min.js"></script>
@@ -27,10 +27,11 @@ and open the template in the editor.
                             "email": $("#email").val(),
                         "password": $("#password").val()}),
                         method: "post",
-                        success: function(result) {
-                        if(result) 
-                            location.href = "index.html";
-                    }
+                        success: window.location.href = "login.html"
+                                //function(result) {
+                        //if(result) 
+                            
+                    //}
                     });
                 });
             });

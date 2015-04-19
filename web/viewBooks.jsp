@@ -17,7 +17,7 @@
     <body>
         <section class="container">
             <div class="col-md-8">
-                <h1>List of Books</h1>
+        <h1>List of Books</h1>
            <table border="10" bordercolor=#0000ff>
                 <tr>
                     <th><h3>Book ID</h3></th>
@@ -25,9 +25,8 @@
                     <th><h3>Author Name</h3></th>
                     <th><h3>Category</h3></th>
                     <th><h3>Description</h3></th>
-                    <th><h3>Quantity</h3></th>
                     <th><h3>Available</h3></th>
-                    <th><h3>Edit/Delete</h3></th>
+                    <th><h3>Booking</h3></th>
                 </tr>
         	
                  <%
@@ -50,23 +49,21 @@
                          <td><h4><%=author%></h4></td>
                          <td><h4><%=category%></h4></td>
                         <td><h4><%=description%></h4></td>
-                        <td><h4><%=quantity%></h4></td>
                     <td><h4><%=available%></h4></td>
-                    <td>
-                        <form action="Admin/updateBooks.jsp">
-                            <input type="hidden" value="<%=bid%>" name="id"/>
-                            <input type="hidden" value="<%=bname%>" name="title"/>
-                            <input type="hidden" value="<%=author%>" name="author"/>
-                            <input type="hidden" value="<%=category%>" name="category"/>
-                            <input type="hidden" value="<%=description%>" name="description"/>
-                            <input type="hidden" value="<%=quantity%>" name="quantity"/>
-                            <input type="Submit" name="Edit"/>
-                        </form>
-                            <a href='deletebooks?id=<%=bid%>'>Delete</a></h4></td>
+                   <% 
+                   if(Integer.parseInt(available)>0) {
+                   %>
+                   <td></h4><a href='./booking?id=<%=bid%>&name=<%=bname%>'>Book Now</a></h4></td>
+                    <%
+                   }
+                   else {
+                       
+%>
+                    <td><h4>unavailable</h4></td>
                  </tr>
                  
                          <%
-                         
+                         } 
                      }
                    }
                  

@@ -16,19 +16,16 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <script type="text/javascript">
          
-    <%  HttpSession ses=request.getSession();
-    String id=(String)ses.getAttribute("id");
+    <% // HttpSession ses=request.getSession();
+    //String id=(String)ses.getAttribute("id");
     //System.out.println("sessionid:"+id);
    
     
 %>
      
      
-     
-  $(document).ready(function() {
-    var uid = document.getElementById("hid");
-    console.log("uid:"+uid);
-               alert(uid); 
+    var uid='<%=session.getAttribute("id")%>';
+  $(document).ready(function() { 
                 $.ajax({url: "./u/users/"+uid,
                     dataType: "json",
                     method:"get",
@@ -48,7 +45,7 @@
            });
                 $('#update').click(function() {
                     $.ajax({
-                        url: "./u/users"+uid,
+                        url: "./u/users",
                         dataType: "json",
                         contentType: 'application/json; charset=UTF-8',
                         data: JSON.stringify({
@@ -56,29 +53,23 @@
                             "lastName": $("#lname").val(),
                             "address": $("#address").val(),
                             "phone": $("#phone").val(),
-                            "email": $("#email").val(),\
+                            "email": $("#email").val(),
                         "password": $("#password").val()}),
-                        method: "put"
-//                        success: function(result) {
-//                        if(result === 1) 
-//                            location.href = "index.html";
- //                   }
-                    
+                        method: "put",
+                         success: function(data) {
+                                 window.location.href="index.html";
+                             }
                 });
             });
         </script>
     </head>
     <body>
-        <input type="text" id="hid" value="<%=id%>"/>
-         <h1>Update Books</h1>
+
+         
         <section class="container">
             <div class="col-md-8">
-                <form id="updateform">
-                  
-               
-            
-
-                                              
+                <h1>Edit Profile</h1>
+                <form id="updateform">                              
                 <div class="form-group">
                     <label for="uid">ID:</label>
                     <input id="uid" readonly="readonly" class="form-control"/> 

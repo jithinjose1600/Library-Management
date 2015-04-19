@@ -28,7 +28,7 @@
                             "category": $("#b_category").val(),
                             "description": $("#b_description").val(),
                             "quantity": $("#b_quantity").val()}),
-                        method: "put"                       
+                        method: "put",                       
                         success: window.location.href = "viewBooks.jsp";
                                 //function(result) {
                         //if(result==1) 
@@ -40,9 +40,10 @@
         </script>
     </head>
     <body>
-        <h1>Update Books</h1>
+        
         <section class="container">
             <div class="col-md-8">
+                <h1>Update Books</h1>
                 <form id="updateform">
                      <%
                          String bid=request.getParameter("id");

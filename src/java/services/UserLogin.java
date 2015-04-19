@@ -49,11 +49,11 @@ public class UserLogin extends HttpServlet{
                 HttpSession session=req.getSession(true);
                 session.setAttribute("id", id);
                 session.setAttribute("name", fname+" "+lname);
-               res.sendRedirect("index.html");
+               res.sendRedirect("welcome.jsp");
             }
             if(rs.wasNull())
             {
-                res.sendRedirect("memberRegister.html");
+                res.sendRedirect("login.jsp");
             }
             
        } catch (SQLException ex) {

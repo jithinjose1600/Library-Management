@@ -12,8 +12,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Records</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <section class="container">
+            <div class="col-md-8">
+                <h1>Book issue History</h1>
            <table border="10" bordercolor=#0000ff>
                 <tr>
                     <th><h3>Book ID</h3></th>

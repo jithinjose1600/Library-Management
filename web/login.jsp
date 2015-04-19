@@ -14,17 +14,19 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Login Here</h1>
+        
         <section class="container">
+            
             <div class="col-md-8">
+                <h1>Login Here</h1>
                 <form action="login">
                 <div class="form-group">
                     <label for="fname">Email:</label>
                     <input id="fname" name="email" class="form-control"/>
                     <label for="lname">Password:</label>
-                    <input id="lname" name="password" class="form-control"/>
+                    <input type="password" id="lname" name="password" class="form-control"/>
                 </div>
-                <button id="Login" class="btn btn-default">Register</button>
+                <button id="Login" class="btn btn-default">Login</button>
                 <a href="memberRegister.html">New User, Register</a>
                 </form>
             </div>

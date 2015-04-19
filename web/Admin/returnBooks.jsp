@@ -20,9 +20,10 @@
         
     </head>
     <body>
-        <h1>Return Books</h1>
+        
         <section class="container">
             <div class="col-md-8">
+                <h1>Return Books</h1>
                 <form action="../return" method="POST">
                 <div class="form-group">
                     <label for="u_id">User Id:</label>

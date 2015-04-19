@@ -48,7 +48,8 @@ public class Users {
     }
     
     @POST
-    public void post(String str) {
+    public String post(String str) {
+        int res=0;
         try {
             JsonObject json = Json.createReader(new StringReader(str)).readObject();
             int min = 1;
@@ -72,17 +73,18 @@ public class Users {
             pstmt.setString(5, phone);
             pstmt.setString(6, email);
             pstmt.setString(7, password);
-            pstmt.executeUpdate();
+            res=pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        return doGet();
     }
     
     @PUT
     @Path("{id}")
-    public void put(@PathParam("id") String id, String str) {
+    public String put(@PathParam("id") String id, String str) {
         try {
+            System.out.println("putti ethi..");
             JsonObject json = Json.createReader(new StringReader(str)).readObject();
             String fname = json.getString("firstName");
             String lname = json.getString("lastName");
@@ -104,7 +106,7 @@ public class Users {
         } catch (SQLException ex) {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        return doGet();
     }
     
     @DELETE

@@ -14,9 +14,10 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Add Books</h1>
+        
         <section class="container">
             <div class="col-md-8">
+                <h1>Add Books</h1>
                 <form action="../books" method="POST">
                 <div class="form-group">
                     <label for="b_name">Book Name:</label>
